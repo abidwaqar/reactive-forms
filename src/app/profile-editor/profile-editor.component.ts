@@ -14,7 +14,22 @@ export class ProfileEditorComponent implements OnInit {
   ngOnInit(): void {
     this.profileForm = new FormGroup({
         firstName: new FormControl('', Validators.required),
-        lastName: new FormControl('', Validators.required)
+        lastName: new FormControl('', Validators.required),
+        address: new FormGroup({
+            street: new FormControl(''),
+            city: new FormControl(''),
+            state: new FormControl(''),
+            zip: new FormControl('')
+        })
+    });
+  }
+
+  updateProfile(): void {
+    this.profileForm.patchValue({
+      firstName: 'Nancy',
+      address: {
+        street: '123 Drew Street'
+      }
     });
   }
 
