@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-editor',
@@ -20,8 +20,19 @@ export class ProfileEditorComponent implements OnInit {
             city: [''],
             state: [''],
             zip: ['']
-        })
+        }),
+        aliases: this.formBuilder.array([
+            this.formBuilder.control(''),
+        ])
     });
+  }
+
+  get aliases(): FormArray {
+    return this.profileForm.get('aliases') as FormArray;
+  }
+
+  addAlias(): void {
+    this.aliases.push(this.formBuilder.control(''));
   }
 
   updateProfile(): void {

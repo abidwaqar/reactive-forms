@@ -21,6 +21,16 @@
         <input type="text" id="zip" formControlName="zip">
     </div>
 
+    <div formArrayName="aliases">
+        <h2>Aliases</h2>
+        <button type="button" (click)="addAlias()">+ Add another alias</button>
+
+        <div *ngFor="let alias of aliases.controls; let i=index">
+            <label for="alias-{{i}}">Alias: </label>
+            <input type="text" id="alias-{{i}}" [formControlName]="i">
+        </div>
+    </div>
+
     <p>Form Status: {{ profileForm.status }}</p>
 
     <button type="button" (click)="updateProfile()">Update Profile</button>
